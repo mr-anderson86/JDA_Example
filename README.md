@@ -3,7 +3,8 @@
 ## Description:
 
 This repository represents a Jenkins pipeline, which all runs on an agent based on a docker image, 
-which is been built first on some remote other label (therefor the Docker file).
+which is been built first on some remote other label (therefor the Docker file).  
+Screenshots of final results can be found in the screenshots directory :-)
 
 
 Meaning:
