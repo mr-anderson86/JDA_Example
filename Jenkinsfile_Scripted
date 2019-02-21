@@ -13,7 +13,7 @@ try {
             echo "Publishing zip files from job ${JOB_NAME} on version ${VER}"
             /* the part below will not work, since host doesn't exist.
                So feel free to comment from here up to the end of "server.publishBuildInfo buildInfo"
-               (or delete this code) /*
+               (or delete this code) */
             def server = Artifactory.newServer url: 'https://artifactory-telaviv', username: 'some-user', password: 'some-password'
             def uploadSpec = """{
               "files": [
