@@ -1,0 +1,59 @@
+try {
+    node('zip-job-docker') {
+        stage('Checkout SCM') {
+            checkout scm
+        }
+    }
+    docker.build('zip-job').inside('--privileged') {
+        stage('build') {
+            sh '/tmp/zip_job.pl'
+        }
+        stage('Publish') {
+            def VER = sh(returnStdout: true, script: 'env | grep VERSION | cut -d= -f2').trim()
+            echo "Publishing zip files from job ${JOB_NAME} on version ${VER}"
+            /* the part below will not work, since host doesn't exist.
+               So feel free to comment from here up to the end of "server.publishBuildInfo buildInfo"
+               (or delete this code) /*
+            def server = Artifactory.newServer url: 'https://artifactory-telaviv', username: 'some-user', password: 'some-password'
+            def uploadSpec = """{
+              "files": [
+                {
+                  "pattern": "*${VER}*.zip",
+                  "target": "binary-storage/${VER}/"
+                }
+             ]
+            }"""
+            def buildInfo = Artifactory.newBuildInfo()
+            server.upload spec: uploadSpec, buildInfo: buildInfo
+            server.publishBuildInfo buildInfo
+            echo "Publish done."
+        }
+        stage('Report') {
+            emailext subject: "[${JOB_NAME}] #${BUILD_NUMBER} - Success",
+                     mimeType: 'text/html',
+                     body: """<html><body>
+                        [${JOB_NAME}] #${BUILD_NUMBER} - Success </br>
+                        BUILD_URL: ${BUILD_URL}
+                        </body></html>""",
+                     attachLog: true,
+                     to: "some.mail@something.com",
+                     replyTo: "some.other.mail@something.com"
+        }
+        stage('Cleanup') {
+            deleteDir()
+        }
+    }
+} catch(err) {
+    currentBuild.result='FAILURE'
+    echo "Job failed"
+    emailext subject: "[${JOB_NAME}] #${BUILD_NUMBER} - Success",
+             mimeType: 'text/html',
+             body: """<html><body>
+             [${JOB_NAME}] #${BUILD_NUMBER} - Success </br>
+             BUILD_URL: ${BUILD_URL}
+             </body></html>""",
+             attachLog: true,
+             to: "some.mail@something.com",
+             replyTo: "some.other.mail@something.com"
+    throw err
+}
