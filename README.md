@@ -7,8 +7,8 @@ which is been built first on some remote other label (therefor the Docker file).
 
 
 Meaning:
-1. The pipeline builds an image out of the Dockerfile.
-2. It runs a container using the image above.
+1. The pipeline builds an image out of the Dockerfile (this is going on the remote label/node/agent).
+2. It runs a container using the image above (this is going on the remote label/node/agent).
 3. The rest of the pipeline runs inside this Docker container.
 4. Once the job is done, it deletes the Docker container.
 
