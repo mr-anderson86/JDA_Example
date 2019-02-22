@@ -47,6 +47,7 @@ The repository holds 4 files:
   - Artifactory password: "some-password"
   - Artifactory repository to upload to: "binary-storage/{VERSION env variable}"
   - (Just note, that this stage fails since this address doesn't exist, so feel free to comment those lines on your private repository).
+  - (In addition, you need to install Artifactory plugin version >= 3.0.0 for using Artifactory in Jenkins)
 * Report stage - sends email with job status in the subject to your mail address
 * Cleanup stage - delete the workspace
 
