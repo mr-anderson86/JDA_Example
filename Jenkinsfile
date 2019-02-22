@@ -19,7 +19,9 @@ pipeline {
                 echo "Publishing zip files from job ${JOB_NAME} on version ${VER}"
                 /* the part below will not work, since host doesn't exist.
                    So feel free to comment from here up to the end of rtPublishBuildInfo
-                   (or delete this code) */
+                   (or delete this code).
+                   If you do wish to use this code, 
+                   you need to install Artifactory plugin version >= 3.0.0*/
                 rtServer (
                     id: "Artifactory-1",
                     url: "https://artifactory-telaviv",
