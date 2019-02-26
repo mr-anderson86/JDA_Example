@@ -3,15 +3,15 @@
 ## Description:
 
 This repository represents a Jenkins pipeline, which all runs on an agent based on a docker image, 
-which is been built first on some remote other label (therefor the Docker file).  
-Screenshots of final results can be found in the screenshots directory :-)
-
+which is been built first on some other remote label (therefor the Docker file).  
 
 Meaning:
 1. The pipeline builds an image out of the Dockerfile (this is going on the remote label/node/agent).
 2. It runs a container using the image above (this is going on the remote label/node/agent).
 3. The rest of the pipeline runs inside this Docker container.
-4. Once the job is done, it deletes the Docker container.
+4. Once the job is done, it deletes the Docker container.  
+
+Screenshots of final results can be found in the screenshots directory :-)  
 
 The repository holds 4 files:
 1. Dockerfile
