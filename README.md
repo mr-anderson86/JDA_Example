@@ -27,10 +27,7 @@ Steps:
 ### The Dockerfile:
 * Based on centos 7 latest image
 * Define environment variable VERSION=1.2.0
-* Install perl
-* Install vim
-* Install zip
-* Install unzip
+* Install perl, vim, zip and unzip
 * Copy zip_job.pl into the image's /tmp folder
 * Once docker container is up run a command which will print OS type and architecture + verify /tmp/zip_job.pl exists
 
