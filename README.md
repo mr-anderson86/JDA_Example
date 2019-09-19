@@ -24,7 +24,7 @@ Steps:
 * Jenkinsfile - [scripted](Jenkinsfile_Scripted)
 
 
-### 1. The Dockerfile does as follows:
+### The Dockerfile:
 * Based on centos 7 latest image
 * Define environment variable VERSION=1.2.0
 * Install perl
@@ -34,26 +34,26 @@ Steps:
 * Copy zip_job.pl into the image's /tmp folder
 * Once docker container is up run a command which will print OS type and architecture + verify /tmp/zip_job.pl exists
 
-### 2. The zip_job.pl perl script does as follows:
+### The zip_job.pl perl script:
 * Create an array of a,b,c,d
 * Based on this array create txt files (a.txt,b.txt….)
 * Make sure all txt files created and if not - fail the script
 * Create zip files with names based on array + VERSION environment variable, that each one will have one txt file inside (a_1.2.0.zip should include a.txt, b_1.2.0.zip should include b.txt  and so on)
 * Make sure all zip files created and if not - fail the script 
 
-### 3. The 2 Jenkinsfiles are with same logic, one Declarative and one Scripted:
-* Agent is be based on the Dockerfile from step 1
-  - it runs in a privileged mode within remote label 'zip-job-docker'
-* Build stage executes the zip_job.pl from step 2
-* Publish stage should upload all the zip files created (only in case build stage succeeded) to Artifactory using the following properties:
-  - Artifactory server: "https://artifactory-telaviv"
-  - Artifactory user: "some-user"
-  - Artifactory password: "some-password"
-  - Artifactory repository to upload to: "binary-storage/{VERSION env variable}"
-  - (Just note, that this stage fails since this address doesn't exist, so feel free to comment those lines on your private repository).
-  - (In addition, you need to install Artifactory plugin version >= 3.0.0 for using Artifactory in Jenkins)
-* Report stage - sends email with job status in the subject to your mail address
-* Cleanup stage - delete the workspace
+### The 2 Jenkinsfiles are with same logic, one Declarative and one Scripted:
+1. Agent is be based on the [Dockerfile](Dockerfile)
+    * it runs in a privileged mode within remote label 'zip-job-docker'
+2. Build stage executes the (zip_job.pl)[zip_job.pl] script.
+3. Publish stage should upload all the zip files created (only in case build stage succeeded) to Artifactory using the following properties:
+    * Artifactory server: "https://artifactory-telaviv"
+    * Artifactory user: "some-user"
+    * Artifactory password: "some-password"
+    * Artifactory repository to upload to: "binary-storage/{VERSION env variable}"
+    * (Just note, that this stage fails since this address doesn't exist, so feel free to comment those lines on your private repository).
+    * (In addition, you need to install Artifactory plugin version >= 3.0.0 for using Artifactory in Jenkins)
+4. Report stage - sends email with job status in the subject to your mail address
+5. Cleanup stage - delete the workspace
 
 
 ### The end, enjoy :)
