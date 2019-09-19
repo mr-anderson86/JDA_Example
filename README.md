@@ -7,7 +7,7 @@ which is been built first on some other remote label (therefor the Docker file).
   
 Screenshots of final results can be found in the [images](images) directory :-) 
 
-## CI/CD process:
+## Jenkins job's process:
 ![Flowchart](https://yuml.me/diagram/plain/activity/(Build%20Docker%20Image)-%3E(Run%20Container)-%3E(Run%20Pipeline%20In%20The%20Container)-%3E(Delete%20The%20Container).png)
 
 Steps:
