@@ -13,7 +13,7 @@ Screenshots of final results can be found in the [images](images) directory :-)
 Steps:
 1. The pipeline builds an image out of the [Dockerfile](Dockerfile) (this is going on the remote label/node/agent).
 2. It runs a container using the image above (this is going on the remote label/node/agent).
-3. The rest of the pipeline runs inside this Docker container.
+3. [The rest of the pipeline runs](#the-2-jenkinsfiles-are-with-same-logic-one-declarative-and-one-scripted) inside this Docker container.
 4. Once the job is done, it deletes the Docker container.  
 
 
@@ -57,4 +57,3 @@ Steps:
 
 
 ### The end, enjoy :)
-
