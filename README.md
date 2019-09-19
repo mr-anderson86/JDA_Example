@@ -4,20 +4,24 @@
 
 This repository represents a Jenkins pipeline, which all runs on an agent based on a docker image, 
 which is been built first on some other remote label (therefor the Docker file).  
+  
+Screenshots of final results can be found in the [images](images) directory :-) 
 
-Meaning:
-1. The pipeline builds an image out of the Dockerfile (this is going on the remote label/node/agent).
+## CI/CD process:
+![Flowchart](https://yuml.me/diagram/plain/activity/(Build%20Docker%20Image)-%3E(Run%20Container)-%3E(Run%20Pipeline%20In%20The%20Container)-%3E(Delete%20The%20Container).png)
+
+Steps:
+1. The pipeline builds an image out of the [Dockerfile](Dockerfile) (this is going on the remote label/node/agent).
 2. It runs a container using the image above (this is going on the remote label/node/agent).
 3. The rest of the pipeline runs inside this Docker container.
 4. Once the job is done, it deletes the Docker container.  
 
-Screenshots of final results can be found in the screenshots directory :-)  
 
-The repository holds 4 files:
-1. Dockerfile
-2. zip_job.pl (some perl script what so ever)
-3. Jenkinsfile - declerative
-4. Jenkinsfile - scripted
+## Repository main files:
+* [Dockerfile](Dockerfile)
+* [zip_job.pl](zip_job.pl) (some perl script what so ever)
+* Jenkinsfile - [declerative](Jenkinsfile)
+* Jenkinsfile - [scripted](Jenkinsfile_Scripted)
 
 
 ### 1. The Dockerfile does as follows:
