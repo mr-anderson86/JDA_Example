@@ -5,10 +5,10 @@
 This repository represents a Jenkins pipeline, which all runs on an agent based on a docker image, 
 which is been built first on some other remote label (therefor the Docker file).  
   
-Screenshots of final results can be found in the [images](images) directory :-) 
+Screenshots of final results can be found in the [screenshots](screenshots) directory :-) 
 
 ## Jenkins job's process:
-![Flowchart](https://yuml.me/diagram/plain/activity/(Build%20Docker%20Image)-%3E(Run%20Container)-%3E(Run%20Pipeline%20In%20The%20Container)-%3E(Delete%20The%20Container).png)
+![Flowchart](https://yuml.me/diagram/plain/activity/(Build%20Docker%20Image)-%3E(Run%20Container)-%3E(Run%20Pipeline%20In%20The%20Container)-%3E(Delete%20The%20Container%20&%20Image).png)
 
 Steps:
 1. The pipeline builds an image out of the [Dockerfile](Dockerfile) (this is going on the remote label/node/agent).
