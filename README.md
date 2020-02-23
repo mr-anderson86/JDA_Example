@@ -41,7 +41,7 @@ Steps:
 ### The 2 Jenkinsfiles are with same logic, one Declarative and one Scripted:
 1. Agent is be based on the [Dockerfile](Dockerfile)
     * it runs in a privileged mode within remote label 'zip-job-docker'
-2. Build stage executes the (zip_job.pl)[zip_job.pl] script.
+2. Build stage executes the [zip_job.pl](zip_job.pl) script.
 3. Publish stage should upload all the zip files created (only in case build stage succeeded) to Artifactory using the following properties:
     * Artifactory server: "https://artifactory-telaviv"
     * Artifactory user: "some-user"
